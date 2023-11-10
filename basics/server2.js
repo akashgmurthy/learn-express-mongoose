@@ -13,19 +13,26 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => {
-  return res.send({ping: 'pong'});
-});
-
 app.use(function (req, res, next) {
   console.log('hello');
   next(new NotFoundError());
 });
 
-app.use(function(err, req, res, next) {
+
+
+// app.use(function (req, res, next) {
+//   console.log('hello');
+//   next(new NotFoundError());
+// });
+
+app.use(function (err, req, res, next) {
   const status = err.status || 500;
   const message = err.message;
   return res.status(status).json({
-    error: {message, status}
+    error: { message, status }
   });
+});
+
+app.get('/', (req, res) => {
+  return res.send({ ping: 'pong' });
 });

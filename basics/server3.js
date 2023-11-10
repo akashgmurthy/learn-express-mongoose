@@ -9,9 +9,10 @@ app.listen(port, () => {
 app.get('/users/:userId/books/:bookId', (req, res) => {
   let p1 = req.params.userId;
   let p2 = req.params.bookId;
-  res.send({p1: p1, p2: p2});
+  res.send({ p1: p1, p2: p2 });
 });
 
 app.get('/user', (req, res) => {
+  console.log(req.query)
   res.send(req.query)
 })

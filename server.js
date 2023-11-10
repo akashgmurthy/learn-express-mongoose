@@ -17,11 +17,11 @@ let CreateBook = require('./pages/create_book');
 
 
 let mongoose = require('mongoose');
-let mongoDB = "mongodb://127.0.0.1:27017/my_library_db";
-mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
+let mongoDB = "mongodb://127.0.0.1:27017/library";
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.on('connected', function() {
+db.on('connected', function () {
   console.log('Connected to database');
 });
 app.use(cors());
@@ -54,17 +54,17 @@ app.get('/book_dtls', (req, res) => {
 })
 
 app.post('/newbook', (req, res) => {
-    const familyName = req.body.familyName;
-    const firstName = req.body.firstName;
-    const genreName = req.body.genreName;
-    const bookTitle = req.body.bookTitle;
-    if(familyName && firstName && genreName && bookTitle) {
-        CreateBook.new_book(res, familyName, firstName, genreName, bookTitle).catch(err => {
-                res.send('Failed to create new book ' + err);
-              });
-    }
-    else {
-        res.send('Invalid Inputs');
-    }
+  const familyName = req.body.familyName;
+  const firstName = req.body.firstName;
+  const genreName = req.body.genreName;
+  const bookTitle = req.body.bookTitle;
+  if (familyName && firstName && genreName && bookTitle) {
+    CreateBook.new_book(res, familyName, firstName, genreName, bookTitle).catch(err => {
+      res.send('Failed to create new book ' + err);
+    });
+  }
+  else {
+    res.send('Invalid Inputs');
+  }
 
 })

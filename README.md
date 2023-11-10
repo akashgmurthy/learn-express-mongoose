@@ -5,8 +5,11 @@ Run `$ npm install` before starting.
 Run the file "basics/server1.js" and answer the following questions:
 
 1. Identify the endpoint method in the code. Which phase of the event loop will the endpoint be scheduled to run?
+ - app.get . In the poll because it involved I/O operations
 2. What do you see when you render "http://localhost:3001/" in the browser?
+ - {"ping":"pong"}
 3. Try console logging req.body inside the endpoint’s handler? What do you see in the console? Why?
+ - Undefined, because no parameters are passed as the body
 
 Open the file "basics/server2.js" and answer the following:
 
@@ -17,6 +20,7 @@ Open the file "basics/server2.js" and answer the following:
 Open the file "basics/server3.js" and answer the following:
 
 1. What are the *params* in the path?
+ - the variables added in the url
 2. Assume the server is running on localhost:3002. Provide a path which would be handled by the endpoint shown and provide the output.
 3. Construct a URL with inputs for the end point defined in '/user'. 
 
@@ -26,7 +30,9 @@ Open the file "basics/breakfastSchema.js". Inspect the schema structure and unde
 
 1. Run the schema and make sure there are no error.
 2. What will happen if we create an instance of the schema with eggs set to 13?
+ - Failed : ValidationError: eggs: Path `eggs` (13) is more than maximum allowed value (12).
 3. What will happen if we create an instance of the schema with drink set to "Milk"?
+    - Failed : ValidationError: drink: `Milk` is not a valid enum value for path `drink`.
 4. Run "basics/mongoose-demo.js" and see what you get? make the changes in 2 and 3 and run again.
 5. Define a function insertMany(entries) in the above script, which takes a list of objects {eggs: N, drink: ‘some drink’} and inserts each entry in entries in the MongoDB collection my_db.
 
